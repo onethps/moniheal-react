@@ -1,9 +1,8 @@
 import { type ThemeOptions } from "@mui/material";
 
-import GraphickLCGWoff2Regular from "../assets/fonts/Graphik-Regular-Web.woff2";
-import GraphickLCGWoff2Medium from "../assets/fonts/Graphik-Medium-Web.woff2";
-import GraphickLCGWoff2Bold from "../assets/fonts/Graphik-Bold-Web.woff2";
-import GraphickLCGWoff2Bolder from "../assets/fonts/Graphik-Black-Web.woff2";
+import GraphickLCGWoff2Medium from "../assets/fonts/GraphikLCG-Medium.woff2";
+import GraphickLCGWoff2SemiBold from "../assets/fonts/GraphikLCG-Semibold.woff2";
+import GraphickLCGWoff2Bold from "../assets/fonts/GraphikLCG-Bold.woff2";
 
 import { palette } from "./palette";
 
@@ -16,28 +15,23 @@ export const themeOptions: ThemeOptions = {
       styleOverrides: `
         @font-face {
           font-family: 'GraphikLCG';
-          font-style: lighter;
+          font-style: normal;
           font-weight: 300;
-          src: url(${GraphickLCGWoff2Regular}) format('woff2');
+          src: url(${GraphickLCGWoff2Medium}) format('woff2');
         },
         @font-face {
           font-family: 'GraphikLCG';
           font-style: normal;
           font-weight: 400;
-          src: url(${GraphickLCGWoff2Medium}) format('woff2');
+          src: url(${GraphickLCGWoff2SemiBold}) format('woff2');
         },
         @font-face {
           font-family: 'GraphikLCG';
-          font-style: bolder;
-          font-weight: 700;
+          font-style: bold;
+          font-weight: 500;
           src: url(${GraphickLCGWoff2Bold}) format('woff2');
         }
-        @font-face {
-          font-family: 'GraphikLCG';
-          font-style: extra-bold;
-          font-weight: 800;
-          src: url(${GraphickLCGWoff2Bolder}) format('woff2');
-        }
+     
         `,
     },
     MuiCard: {

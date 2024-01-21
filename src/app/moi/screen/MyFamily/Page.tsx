@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { BaseScreen } from "../../../../shared/components/layout/Screen/BaseScreen";
 import { PageHeader } from "../../../../shared/components/layout/Header/PageHeader";
 import { FormTabs } from "./components/FormTabs/FormTabs";
@@ -16,7 +16,7 @@ export function Page() {
   return (
     <BaseScreen>
       <PageHeader
-        title={"qwdqdqwdqwd"}
+        title={t("menu.profile.myFamily")}
         toolbar={
           <PageActionButton
             onClick={() => setActiveModal(true)}
@@ -24,7 +24,7 @@ export function Page() {
             color="success"
             startIcon={<ControlPointOutlinedIcon />}
           >
-            {t("menu.profile.charges")}
+            {t("charges.charge")}
           </PageActionButton>
         }
       />
@@ -37,7 +37,7 @@ export function Page() {
   );
 }
 
-const PageActionButton = styled(Button)(({ theme }) => ({
+const PageActionButton = styled(Button)(() => ({
   fontWeight: "700",
   textTransform: "capitalize",
 }));

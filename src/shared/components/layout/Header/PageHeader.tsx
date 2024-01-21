@@ -1,12 +1,7 @@
-import React from "react";
-import classNames from "classnames";
-import { BaseHeaderProps } from "./type/props";
-import { useStyles } from "./PageHeader.jss";
 import { Box, Typography } from "@mui/material";
 
-export const PageHeader = (props: BaseHeaderProps) => {
+export const PageHeader = (props) => {
   const { title, toolbar } = props;
-  const styles = useStyles();
 
   return (
     <Box
@@ -17,7 +12,9 @@ export const PageHeader = (props: BaseHeaderProps) => {
         marginBottom: "20px",
       }}
     >
-      <Typography>{title}</Typography>
+      <Typography variant="h6" fontWeight="600">
+        {title}
+      </Typography>
       {toolbar}
     </Box>
   );

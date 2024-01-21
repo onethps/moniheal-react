@@ -22,5 +22,6 @@ export const palette: PaletteOptions = {
   },
   success: {
     main: "#29F499",
+    dark: "#2BBB97",
   },
 };
