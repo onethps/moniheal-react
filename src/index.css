@@ -66,3 +66,35 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* Regular Weight */
+@font-face {
+  font-family: GraphikLCG;
+  src: url("./app//moi//assets//fonts//GraphikLCG-Medium.ttf");
+  font-style: normal;
+  font-weight: 400;
+}
+
+
+@font-face {
+  font-family: GraphikLCG;
+  src: url("./app//moi//assets//fonts//GraphikLCG-Semibold.ttf");
+  font-style: semibold;
+  font-weight: 500;
+}
+
+
+@font-face {
+  font-family: GraphikLCG;
+  src: url("./app//moi//assets//fonts//GraphikLCG-Bold.ttf");
+  font-weight: bold;
+  font-weight: 600;
+}
+
+
+@font-face {
+  font-family: GraphikLCG;
+  src: url("./app//moi//assets//fonts//GraphikLCG-Black.ttf");
+  font-weight: bolder;
+  font-weight: 700;
+}

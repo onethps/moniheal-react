@@ -1,11 +1,21 @@
 import { Box, styled } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export const BaseScreen = ({ children }) => {
   return (
     <RootContainer>
       <ContentContainer>
         <ContentWrapper>
-          <Sidebar />
+          <Sidebar>
+            <NavLink
+              to="/services"
+              className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "active" : ""
+              }
+            >
+              Services
+            </NavLink>
+          </Sidebar>
           <Main>{children}</Main>
         </ContentWrapper>
       </ContentContainer>
@@ -16,21 +26,20 @@ export const BaseScreen = ({ children }) => {
 const RootContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   width: "100vw",
-  minHeight: "100vw",
+  minHeight: "100vh",
   height: "100%",
   backgroundColor: "#E9EEEA",
 }));
 const ContentContainer = styled(Box)(({ theme }) => ({
-  maxWidth: 1440,
   margin: "0 auto",
-  padding: "0 15px",
+  paddingRight: "32px",
   width: "100%",
 }));
 
 const ContentWrapper = styled(Box)(({ theme }) => ({
   display: "grid",
-  gridTemplateColumns: "330px 3fr",
-  gap: "30px",
+  gridTemplateColumns: "240px 3fr",
+  gap: "32px",
   marginTop: 50,
   flexDirection: "row",
   [theme.breakpoints.down("lg")]: {
@@ -43,13 +52,11 @@ const ContentWrapper = styled(Box)(({ theme }) => ({
 const Main = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
-  maxWidth: 1050,
   width: "100%",
 }));
 
 const Sidebar = styled(Box)(({ theme }) => ({
-  backgroundColor: "red",
-  width: 330,
+  backgroundColor: "white",
   flexShrink: 0,
   height: "532px",
   [theme.breakpoints.down("lg")]: {

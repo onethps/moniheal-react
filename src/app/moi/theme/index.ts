@@ -1,39 +1,25 @@
 import { type ThemeOptions } from "@mui/material";
-
-import GraphickLCGWoff2Medium from "../assets/fonts/GraphikLCG-Medium.woff2";
-import GraphickLCGWoff2SemiBold from "../assets/fonts/GraphikLCG-Semibold.woff2";
-import GraphickLCGWoff2Bold from "../assets/fonts/GraphikLCG-Bold.woff2";
+import GraphikMedium from "../assets/fonts/GraphikLCG-Medium.woff2";
 
 import { palette } from "./palette";
-
 export const themeOptions: ThemeOptions = {
   typography: {
-    fontFamily: "GraphikLCG, sans-serif",
+    fontFamily: "GraphikLCG",
+    fontSize: 16,
   },
   components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-        @font-face {
-          font-family: 'GraphikLCG';
-          font-style: normal;
-          font-weight: 300;
-          src: url(${GraphickLCGWoff2Medium}) format('woff2');
-        },
-        @font-face {
-          font-family: 'GraphikLCG';
-          font-style: normal;
-          font-weight: 400;
-          src: url(${GraphickLCGWoff2SemiBold}) format('woff2');
-        },
-        @font-face {
-          font-family: 'GraphikLCG';
-          font-style: bold;
-          font-weight: 500;
-          src: url(${GraphickLCGWoff2Bold}) format('woff2');
-        }
-     
-        `,
-    },
+    // MuiCssBaseline: {
+    //   styleOverrides: `
+    //   @font-face {
+    //     font-family: 'GraphikLCG';
+    //     font-style: medium;
+    //     font-display: swap;
+    //     font-weight: 500;
+    //     src: local('GraphikLCG'), local('Raleway-Regular'), url(${GraphikMedium}) format('woff2');
+    //     unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
+    //   }
+    // `,
+    // },
     MuiCard: {
       styleOverrides: {
         root: {

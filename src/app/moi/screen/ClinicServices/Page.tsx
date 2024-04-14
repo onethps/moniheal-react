@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { BaseScreen } from "../../../../shared/components/layout/Screen/BaseScreen";
 import { PageHeader } from "../../../../shared/components/layout/Header/PageHeader";
-import { FormTabs } from "./components/FormTabs/FormTabs";
+
 import { useTranslation } from "react-i18next";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import { Button, styled } from "@mui/material";
+import { FormTabs } from "./components/FormTabs/FormTabs";
+import { NewServiceModal } from "./components/NewServiceModal";
 
 export default function Page() {
   const { t } = useTranslation();
 
-  const [activeModal, setActiveModal] = useState(false);
+  const [activeModal, setActiveModal] = useState(true);
   const onCloseModalHandler = () => setActiveModal(false);
 
   return (
     <BaseScreen>
       <PageHeader
-        title={t("menu.profile.myFamily")}
+        title={"Наші послуги"}
         toolbar={
           <PageActionButton
             onClick={() => setActiveModal(true)}
@@ -23,11 +25,15 @@ export default function Page() {
             color="success"
             startIcon={<ControlPointOutlinedIcon />}
           >
-            {t("charges.charge")}
+            Нова послуга
           </PageActionButton>
         }
       />
       <FormTabs />
+      <NewServiceModal
+        isVisible={activeModal}
+        onCloseModalHandler={onCloseModalHandler}
+      />
     </BaseScreen>
   );
 }

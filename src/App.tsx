@@ -1,10 +1,15 @@
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
-import { Page } from "./app/moi/screen/MyFamily/Page";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MyFamily from "./app/moi/screen/MyFamily/Page";
+import ClinicServices from "./app/moi/screen/ClinicServices/Page";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Page />,
+    element: <MyFamily />,
+  },
+  {
+    path: "/services",
+    element: <ClinicServices />,
   },
 ]);
 

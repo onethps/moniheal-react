@@ -3,33 +3,24 @@ import {
   Button,
   Card,
   CardContent,
-  Popper,
+  List,
+  ListItemButton,
   Stack,
-  Theme,
   Typography,
-  createStyles,
   styled,
   useTheme,
 } from "@mui/material";
-import React, { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { fade } from "@material-ui/core/styles/colorManipulator";
+import { FmToolTip } from "../FmToolTip/FmTooltip";
 
 const imgLink =
   "https://www2.deloitte.com/content/dam/Deloitte/nl/Images/promo_images/deloitte-nl-cm-digital-human-promo.jpg";
 
 export function ChargeCard({ children }: PropsWithChildren<{}>) {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
-  const [arrowRef, setArrowRef] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popper" : undefined;
-
+  const [open, setOpen] = useState(false);
   const theme = useTheme();
-
   return (
     <CardWrapper>
       <CardContent
@@ -54,9 +45,28 @@ export function ChargeCard({ children }: PropsWithChildren<{}>) {
               52p.
             </Typography>
           </LabelWrapper>
-          <FabButton aria-describedby={id} onClick={handleClick}>
-            <MoreVertIcon fontSize="small" htmlColor="#173236" />
-          </FabButton>
+          <FmToolTip
+            content={
+              <List disablePadding>
+                <CustomListItem>Поділитися</CustomListItem>
+                <CustomListItem>Перейменувати</CustomListItem>
+                <CustomListItem
+                  sx={{
+                    color: theme.palette.secondary.main,
+                  }}
+                >
+                  Видалити
+                </CustomListItem>
+              </List>
+            }
+            open={open}
+            placement="bottom"
+            onClose={() => setOpen(false)}
+          >
+            <FabButton onClick={() => setOpen(true)}>
+              <MoreVertIcon fontSize="small" htmlColor="#173236" />
+            </FabButton>
+          </FmToolTip>
         </Stack>
 
         <Avatar src={imgLink} />
@@ -77,62 +87,6 @@ export function ChargeCard({ children }: PropsWithChildren<{}>) {
         </Stack>
       </CardContent>
       {children}
-      <Popper
-        sx={{
-          paper: {
-            overflowX: "unset",
-            overflowY: "unset",
-            "&::before": {
-              content: '""',
-              position: "absolute",
-              marginRight: "-0.71em",
-              bottom: 0,
-              right: 0,
-              width: 10,
-              height: 10,
-              backgroundColor: theme.palette.background.paper,
-              boxShadow: theme.shadows[1],
-              transform: "translate(-50%, 50%) rotate(135deg)",
-              clipPath:
-                "polygon(-5px -5px, calc(100% + 5px) -5px, calc(100% + 5px) calc(100% + 5px))",
-            },
-          },
-        }}
-        open={open}
-        placement="bottom"
-        disablePortal={false}
-        modifiers={[
-          {
-            name: "flip",
-            enabled: true,
-            options: {
-              altBoundary: true,
-              rootBoundary: "document",
-              padding: 8,
-            },
-          },
-          {
-            name: "preventOverflow",
-            enabled: true,
-            options: {
-              altAxis: true,
-              altBoundary: true,
-              tether: true,
-              rootBoundary: "document",
-              padding: 8,
-            },
-          },
-          {
-            name: "arrow",
-            enabled: true,
-            options: {
-              element: arrowRef,
-            },
-          },
-        ]}
-      >
-        {" "}
-      </Popper>
     </CardWrapper>
   );
 }
@@ -141,6 +95,11 @@ const CardWrapper = styled(Card)(() => ({
   border: "solid 1px",
   borderColor: fade("#D2E3F8", 0.5),
   flexGrow: 1,
+}));
+
+const CustomListItem = styled(ListItemButton)(() => ({
+  fontSize: 12,
+  fontWeight: "700",
 }));
 
 const Avatar = styled("img")(() => ({
@@ -171,25 +130,3 @@ const FabButton = styled(Button)(() => ({
   borderRadius: "50px",
   minWidth: "40px",
 }));
-
-const styles = (theme: Theme) =>
-  createStyles({
-    paper: {
-      overflowX: "unset",
-      overflowY: "unset",
-      "&::before": {
-        content: '""',
-        position: "absolute",
-        marginRight: "-0.71em",
-        bottom: 0,
-        right: 0,
-        width: 10,
-        height: 10,
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[1],
-        transform: "translate(-50%, 50%) rotate(135deg)",
-        clipPath:
-          "polygon(-5px -5px, calc(100% + 5px) -5px, calc(100% + 5px) calc(100% + 5px))",
-      },
-    },
-  });
