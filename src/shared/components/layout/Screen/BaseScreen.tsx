@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, Stack, styled } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 export const BaseScreen = ({ children }) => {
@@ -7,14 +7,24 @@ export const BaseScreen = ({ children }) => {
       <ContentContainer>
         <ContentWrapper>
           <Sidebar>
-            <NavLink
-              to="/services"
-              className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "active" : ""
-              }
-            >
-              Services
-            </NavLink>
+            <Stack>
+              <NavLink
+                to="/services"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Services
+              </NavLink>
+              <NavLink
+                to="/reviews"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                Reviews
+              </NavLink>
+            </Stack>
           </Sidebar>
           <Main>{children}</Main>
         </ContentWrapper>

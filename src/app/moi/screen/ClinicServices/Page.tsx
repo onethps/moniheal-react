@@ -6,12 +6,14 @@ import { useTranslation } from "react-i18next";
 import ControlPointOutlinedIcon from "@mui/icons-material/ControlPointOutlined";
 import { Button, styled } from "@mui/material";
 import { FormTabs } from "./components/FormTabs/FormTabs";
-import { NewServiceModal } from "./components/NewServiceModal";
+import { NewServiceModal } from "./components/NewServiceModal/NewServiceModal";
+import { ActiveServiceModal } from "./components/ActiveServiceModal/ActiveServiceModal";
 
 export default function Page() {
   const { t } = useTranslation();
 
-  const [activeModal, setActiveModal] = useState(true);
+  const [activeModal, setActiveModal] = useState(false);
+
   const onCloseModalHandler = () => setActiveModal(false);
 
   return (

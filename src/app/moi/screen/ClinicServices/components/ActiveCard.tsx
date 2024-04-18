@@ -1,19 +1,30 @@
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardActionArea,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
 
 export const useCardStyles = makeStyles(() =>
   createStyles({
     card: {
-      padding: "20px",
       position: "relative",
       maxWidth: "262px",
       width: "100%",
       border: "1px solid #d2e1f5",
       borderRadius: "30px",
-      height: "300px",
+      height: "100%",
+      maxHeight: "300px",
+    },
+    cardArea: {
+      padding: "20px",
     },
     moreButton: {
       position: "absolute",
+      zIndex: "999",
       right: "10px",
       top: "10px",
       border: "1px solid #d2e1f5",
@@ -61,47 +72,59 @@ export const useCardStyles = makeStyles(() =>
   })
 );
 
-export default function ActiveCard() {
+interface ActiveCardProps {
+  onClick?: () => void;
+}
+
+export default function ActiveCard(props: ActiveCardProps) {
+  const { onClick, ...restProps } = props;
   const classes = useCardStyles();
   return (
-    <Box className={classes.card}>
-      {/* header card */}
-      <Stack flexDirection="row" justifyContent="space-between">
-        <Stack>
-          <Typography className={classes.cardHeaderText}>від ₴4800</Typography>
-          <Typography className={classes.cardHeaderDescText}>60хв</Typography>
+    <Card elevation={0} className={classes.card} {...restProps}>
+      <CardActionArea className={classes.cardArea} onClick={onClick}>
+        {/* header card */}
+        <Stack flexDirection="row" justifyContent="space-between">
+          <Stack>
+            <Typography className={classes.cardHeaderText}>
+              від ₴4800
+            </Typography>
+            <Typography className={classes.cardHeaderDescText}>60хв</Typography>
+          </Stack>
+          <IconButton
+            onMouseDown={(event) => event.stopPropagation()}
+            className={classes.moreButton}
+          >
+            <VertIcon />
+          </IconButton>
         </Stack>
-        <IconButton className={classes.moreButton}>
-          <VertIcon />
-        </IconButton>
-      </Stack>
-      {/* main content card */}
-      <Typography className={classes.cardMainText}>
-        Консультація психіатра для приватних компаній
-      </Typography>
-      <Typography className={classes.cardDescriptionText}>
-        Необхідні роз’яснення надійдуть на Вашу електронну адресу після
-        завершення онлайн-замовлення.
-      </Typography>
-      <Stack marginTop="62px" flexDirection="row" gap="4px">
-        <IconButton
-          className={classes.cardBottomButton}
-          disableRipple
-          disableTouchRipple
-          disableFocusRipple
-        >
-          <CameraIcon />
-        </IconButton>
-        <IconButton
-          className={classes.cardBottomButton}
-          disableRipple
-          disableTouchRipple
-          disableFocusRipple
-        >
-          <PersonIcon />
-        </IconButton>
-      </Stack>
-    </Box>
+        {/* main content card */}
+        <Typography className={classes.cardMainText}>
+          Консультація психіатра для приватних компаній
+        </Typography>
+        <Typography className={classes.cardDescriptionText}>
+          Необхідні роз’яснення надійдуть на Вашу електронну адресу після
+          завершення онлайн-замовлення.
+        </Typography>
+        <Stack marginTop="62px" flexDirection="row" gap="4px">
+          <IconButton
+            className={classes.cardBottomButton}
+            disableRipple
+            disableTouchRipple
+            disableFocusRipple
+          >
+            <CameraIcon />
+          </IconButton>
+          <IconButton
+            className={classes.cardBottomButton}
+            disableRipple
+            disableTouchRipple
+            disableFocusRipple
+          >
+            <PersonIcon />
+          </IconButton>
+        </Stack>
+      </CardActionArea>
+    </Card>
   );
 }
 

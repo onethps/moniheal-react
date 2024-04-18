@@ -4,6 +4,8 @@ import { makeStyles, createStyles } from "@mui/styles";
 import { FmSearchInput } from "../../../../../shared/components/FmSearchInput";
 import SortSwitcher from "../../../../../shared/components/Switcher";
 import ActiveCard from "../components/ActiveCard";
+import { useState } from "react";
+import { ActiveServiceModal } from "../components/ActiveServiceModal/ActiveServiceModal";
 export const useCardStyles = makeStyles(() =>
   createStyles({
     mainWrapper: {
@@ -35,6 +37,13 @@ export const useCardStyles = makeStyles(() =>
 
 export default function Active() {
   const classes = useCardStyles();
+
+  const [activeCard, setActiveCard] = useState(false);
+
+  const onToggleCard = () => {
+    setActiveCard(!activeCard);
+  };
+
   return (
     <CustomCard>
       <Stack className={classes.mainWrapper}>
@@ -59,10 +68,14 @@ export default function Active() {
         {/* main content */}
         <Stack flexDirection="row" flexWrap="wrap" gap="16px" mt="16px">
           {[...new Array(5).fill("123")].map((e) => (
-            <ActiveCard />
+            <ActiveCard onClick={onToggleCard} />
           ))}
         </Stack>
       </Stack>
+      <ActiveServiceModal
+        onCloseModalHandler={onToggleCard}
+        isVisible={activeCard}
+      />
     </CustomCard>
   );
 }
