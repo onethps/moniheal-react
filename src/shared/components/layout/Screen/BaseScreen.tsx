@@ -1,7 +1,10 @@
 import { Box, Stack, styled } from "@mui/material";
+import { FC, PropsWithChildren } from "react";
 import { NavLink } from "react-router-dom";
 
-export const BaseScreen = ({ children }) => {
+export const BaseScreen: FC<PropsWithChildren<{ a?: boolean }>> = ({
+  children,
+}) => {
   return (
     <RootContainer>
       <ContentContainer>
@@ -23,6 +26,14 @@ export const BaseScreen = ({ children }) => {
                 }
               >
                 Reviews
+              </NavLink>
+              <NavLink
+                to="/ehealth"
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                ehealth
               </NavLink>
             </Stack>
           </Sidebar>
