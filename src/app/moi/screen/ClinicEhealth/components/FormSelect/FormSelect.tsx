@@ -32,22 +32,27 @@ const InputLabel = styled(MuiInputLabel)(({ theme }) => ({
   marginBottom: 10,
 }));
 
-const FormGroup = styled(MuiFormGroup)(({ theme }) => ({}));
+const FormGroup = styled(MuiFormGroup)<{ fullWidth: boolean | undefined }>(
+  ({ fullWidth, theme }) => ({
+    width: fullWidth ? "100%" : "inherit",
+  })
+);
 
 interface FormSelectProps {
   name: string;
   label: string;
   options: { value: string; label: string }[];
   placeholder: string;
+  fullWidth?: boolean;
 }
 
 export default function FormSelect(props: FormSelectProps) {
-  const { name, label, placeholder, options, ...restProps } = props;
+  const { name, label, placeholder, fullWidth, options, ...restProps } = props;
 
   const [field, meta, helpers] = useField(name);
 
   return (
-    <FormGroup>
+    <FormGroup fullWidth={fullWidth}>
       <InputLabel>{label}</InputLabel>
       <Select
         error={meta.touched && Boolean(meta.error)}

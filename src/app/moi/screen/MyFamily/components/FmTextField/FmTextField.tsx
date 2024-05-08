@@ -1,18 +1,15 @@
 import {
   Box,
   IconButton,
-  Input,
   InputBase,
   InputBaseProps,
   InputLabel,
   SxProps,
-  Typography,
   styled,
 } from "@mui/material";
 import { createStyles, makeStyles } from "@mui/styles";
 import { useField } from "formik";
 import { forwardRef } from "react";
-import ExpandIcon from "../../../ClinicEhealth/assets/icons/ExpandIcon";
 import { Theme } from "@material-ui/core";
 
 type FmTextFieldProps = {
@@ -36,6 +33,7 @@ export const FmTextField = forwardRef<HTMLInputElement, FmTextFieldProps>(
       <InputControl
         sx={{
           width: fullWidth ? "100%" : "inherit",
+
           position: "relative",
           ...containerStyles,
         }}
@@ -64,7 +62,8 @@ export const FmTextField = forwardRef<HTMLInputElement, FmTextFieldProps>(
             sx={{
               position: "absolute",
               right: 15,
-              top: 40,
+              top: 45,
+              padding: 0,
             }}
           >
             {endIcon}
@@ -96,6 +95,7 @@ const useStyles = makeStyles<Theme, StyleProps>((theme) =>
       marginBottom: 10,
     },
     inputRoot: {
+      height: 50,
       padding: "14px 15px",
       paddingRight: ({ endIcon }) => (endIcon ? 45 : "15px"),
       border: "1px solid #90a4be",

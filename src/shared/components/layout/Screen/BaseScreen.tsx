@@ -2,6 +2,25 @@ import { Box, Stack, styled } from "@mui/material";
 import { FC, PropsWithChildren } from "react";
 import { NavLink } from "react-router-dom";
 
+const routes = [
+  {
+    to: "/services",
+    name: "Services",
+  },
+  {
+    to: "/ehealth",
+    name: "ehealth",
+  },
+  {
+    to: "/reviews",
+    name: "Reviews",
+  },
+  {
+    to: "/doctors",
+    name: "Doctors",
+  },
+];
+
 export const BaseScreen: FC<PropsWithChildren<{ a?: boolean }>> = ({
   children,
 }) => {
@@ -11,30 +30,16 @@ export const BaseScreen: FC<PropsWithChildren<{ a?: boolean }>> = ({
         <ContentWrapper>
           <Sidebar>
             <Stack>
-              <NavLink
-                to="/services"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                Services
-              </NavLink>
-              <NavLink
-                to="/reviews"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                Reviews
-              </NavLink>
-              <NavLink
-                to="/ehealth"
-                className={({ isActive, isPending }) =>
-                  isPending ? "pending" : isActive ? "active" : ""
-                }
-              >
-                ehealth
-              </NavLink>
+              {routes.map((r) => (
+                <NavLink
+                  to={r.to}
+                  className={({ isActive, isPending }) =>
+                    isPending ? "pending" : isActive ? "active" : ""
+                  }
+                >
+                  {r.name}
+                </NavLink>
+              ))}
             </Stack>
           </Sidebar>
           <Main>{children}</Main>

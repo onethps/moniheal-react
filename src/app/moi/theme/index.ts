@@ -1,25 +1,82 @@
-import { type ThemeOptions } from "@mui/material";
-import GraphikMedium from "../assets/fonts/GraphikLCG-Medium.woff2";
-
+import {
+  PaletteOptions,
+  ThemeOptions,
+  Container,
+  createTheme,
+} from "@mui/material";
 import { palette } from "./palette";
-export const themeOptions: ThemeOptions = {
-  typography: {
-    fontFamily: "GraphikLCG",
-    fontSize: 16,
+
+import { fontFaceOverrides } from "./fonts";
+import { typography } from "./typography";
+
+const themeOptions: ThemeOptions = {
+  typography,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      dialogLg: 688,
+      dialogMd: 452,
+      dialogXmd: 500,
+    },
   },
   components: {
-    // MuiCssBaseline: {
-    //   styleOverrides: `
-    //   @font-face {
-    //     font-family: 'GraphikLCG';
-    //     font-style: medium;
-    //     font-display: swap;
-    //     font-weight: 500;
-    //     src: local('GraphikLCG'), local('Raleway-Regular'), url(${GraphikMedium}) format('woff2');
-    //     unicodeRange: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF;
-    //   }
-    // `,
-    // },
+    MuiTypography: {
+      defaultProps: {
+        variant: "body",
+        variantMapping: {
+          large: "p",
+          body: "p",
+          small: "p",
+          mini: "p",
+          tiny: "p",
+        },
+      },
+    },
+    MuiIcon: {
+      styleOverrides: {},
+    },
+    MuiSvgIcon: {
+      variants: [
+        {
+          props: { fontSize: "superSmall" },
+          style: {
+            fontSize: 12,
+          },
+        },
+        {
+          props: { fontSize: "extraSmall" },
+          style: {
+            fontSize: 16,
+          },
+        },
+        {
+          props: { fontSize: "small" },
+          style: {
+            fontSize: 20,
+          },
+        },
+      ],
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: 14,
+          fontWeight: "500",
+        },
+      },
+    },
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: 14,
+          fontWeight: "500",
+        },
+      },
+    },
     MuiCard: {
       styleOverrides: {
         root: {
@@ -28,12 +85,13 @@ export const themeOptions: ThemeOptions = {
         },
       },
     },
+
     MuiButton: {
       variants: [
         {
-          props: { variant: "contained", size: "large" },
+          props: { variant: "contained", size: "medium" },
           style: {
-            minHeight: 40,
+            height: 50,
           },
         },
         {
@@ -61,6 +119,10 @@ export const themeOptions: ThemeOptions = {
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: fontFaceOverrides,
+    },
+
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
@@ -74,5 +136,9 @@ export const themeOptions: ThemeOptions = {
       },
     },
   },
+
   palette,
 };
+
+export const darkTheme = createTheme(themeOptions);
+export const lightTheme = createTheme(themeOptions);

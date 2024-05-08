@@ -39,9 +39,9 @@ const CustomPaginationItem = (pageParams: PaginationRenderItemParams) => {
 
 export default function Page() {
   const { t } = useTranslation();
-  const [page, setPage] = React.useState(1); // Initial page
+  const [page, setPage] = React.useState(1);
 
-  const handleChange = (event, newPage) => {
+  const handleChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage);
   };
 

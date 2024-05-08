@@ -1,17 +1,71 @@
+import React, {
+  FC,
+  useEffect,
+  useState,
+  useContext,
+  createContext,
+  PropsWithChildren,
+} from "react";
+import { ThemeProvider as MuiThemeProvider } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-import { type ReactNode } from "react";
+import { Theme } from "@mui/material/styles";
 
-import { themeOptions } from "../theme/index";
-import { ThemeProvider } from "@mui/material";
-import createTheme from "@mui/material/styles/createTheme";
+import { darkTheme, lightTheme } from "../theme/index";
+import useLocalStorage from "./useLocalStorage";
 
-export default function ThemeConfig({ children }: { children: ReactNode }) {
-  const theme = createTheme(themeOptions);
+interface ThemeContextValues {
+  mode?: string;
+  toggleMode: any;
+  theme: Theme;
+  isDarkMode: boolean;
+}
+
+const ThemeContext = createContext<ThemeContextValues>({
+  mode: "light",
+  toggleMode: () => {},
+  theme: lightTheme,
+  isDarkMode: false,
+});
+
+const cacheKey = "ui-theme-mode";
+
+const ThemeConfig: FC<PropsWithChildren<{}>> = ({ children }) => {
+  const [mode, setMode] = useLocalStorage(cacheKey, "light");
+  const [theme, setTheme] = useState(mode === "light" ? lightTheme : darkTheme);
+
+  function toggleMode() {
+    if (mode === "light") {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  }
+
+  useEffect(() => {
+    if (mode === "dark") {
+      setTheme(darkTheme);
+    } else {
+      setTheme(lightTheme);
+    }
+  }, [mode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {children}
-    </ThemeProvider>
+    <ThemeContext.Provider
+      value={{
+        mode,
+        toggleMode,
+        theme,
+        isDarkMode: mode === "dark",
+      }}
+    >
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </MuiThemeProvider>
+    </ThemeContext.Provider>
   );
-}
+};
+
+export const useThemeMode = () => useContext(ThemeContext);
+
+export default ThemeConfig;

@@ -3,6 +3,7 @@ import MyFamily from "./app/moi/screen/MyFamily/Page";
 import ClinicServices from "./app/moi/screen/ClinicServices/Page";
 import ClinicReviews from "./app/moi/screen/ClinicReviews/Page";
 import ClinicEhealth from "./app/moi/screen/ClinicEhealth/Page";
+import ClinicDoctors from "./app/moi/screen/ClinicDoctors/Page";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/ehealth",
     element: <ClinicEhealth />,
+  },
+  {
+    path: "/doctors",
+    element: <ClinicDoctors />,
   },
 ]);
 
