@@ -4,6 +4,7 @@ import ClinicServices from "./app/moi/screen/ClinicServices/Page";
 import ClinicReviews from "./app/moi/screen/ClinicReviews/Page";
 import ClinicEhealth from "./app/moi/screen/ClinicEhealth/Page";
 import ClinicDoctors from "./app/moi/screen/ClinicDoctors/Page";
+import EhealthPatients from "./app/moi/screen/Eheath/Patients/Page";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/doctors",
     element: <ClinicDoctors />,
+  },
+  {
+    path: "/ehealth/patients",
+    element: <EhealthPatients />,
   },
 ]);
 

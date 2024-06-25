@@ -7,10 +7,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 
 import { setupI18next } from "./setup/i18next.ts";
-import {
-  StyledEngineProvider,
-  ThemeProvider as MUIThemeProvider,
-} from "@mui/material/styles";
+import StyledEngineProvider from "@mui/material/StyledEngineProvider";
 
 setupI18next();
 

@@ -34,5 +34,5 @@ export const typography: TypographyOptions = {
     fontSize: "10px",
     lineHeight: "16px",
   },
-  fontFamily: `${["GraphikLCG"].join(",")} !important`,
+  fontFamily: `${["GraphikLCG"].join(",")} `,
 };

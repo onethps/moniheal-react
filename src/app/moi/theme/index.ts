@@ -1,9 +1,4 @@
-import {
-  PaletteOptions,
-  ThemeOptions,
-  Container,
-  createTheme,
-} from "@mui/material";
+import { ThemeOptions, createTheme } from "@mui/material";
 import { palette } from "./palette";
 
 import { fontFaceOverrides } from "./fonts";

@@ -1,5 +1,14 @@
-import { Box, Stack, styled } from "@mui/material";
-import { FC, PropsWithChildren } from "react";
+import {
+  Box,
+  Collapse,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+  styled,
+} from "@mui/material";
+import { FC, PropsWithChildren, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const routes = [
@@ -16,30 +25,64 @@ const routes = [
     name: "Reviews",
   },
   {
-    to: "/doctors",
-    name: "Doctors",
+    to: "/eheath",
+    name: "Ehealth",
+    nestedMenu: [
+      {
+        to: "/ehealth/patients",
+        name: "Patients",
+      },
+    ],
   },
 ];
 
 export const BaseScreen: FC<PropsWithChildren<{ a?: boolean }>> = ({
   children,
 }) => {
+  const [open, setOpen] = useState(false);
   return (
     <RootContainer>
       <ContentContainer>
         <ContentWrapper>
           <Sidebar>
             <Stack>
-              {routes.map((r) => (
-                <NavLink
-                  to={r.to}
-                  className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                  }
-                >
-                  {r.name}
-                </NavLink>
-              ))}
+              {routes.map((r) => {
+                if (r.nestedMenu) {
+                  return (
+                    <>
+                      <ListItem button onClick={() => setOpen((prev) => !prev)}>
+                        <ListItemText primary={r.name} />
+                        {/* {open ? <ExpandLessIcon /> : <ExpandMoreIcon />} */}
+                      </ListItem>
+                      <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                          {r.nestedMenu.map((r) => (
+                            <NavLink
+                              to={r.to}
+                              className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "active" : ""
+                              }
+                            >
+                              {r.name}
+                            </NavLink>
+                          ))}
+                        </List>
+                      </Collapse>
+                    </>
+                  );
+                }
+
+                return (
+                  <NavLink
+                    to={r.to}
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "active" : ""
+                    }
+                  >
+                    {r.name}
+                  </NavLink>
+                );
+              })}
             </Stack>
           </Sidebar>
           <Main>{children}</Main>
